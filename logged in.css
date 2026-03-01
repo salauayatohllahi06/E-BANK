@@ -1,0 +1,62 @@
+.righthand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcome-box {
+  text-align: center;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 350px;
+  background-color: #f9f9f9;
+}
+
+.actions {
+  margin-top: 20px;
+}
+.logout-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.action-button1, .logout-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0074cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.action-button2, .logout-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #03cc00;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.logout-button {
+  background-color: #cc0000;
+}
+    .bracket{
+  background: #002040;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  width: 97.5%;
+}

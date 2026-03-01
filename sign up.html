@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CS BANK – Sign Up</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+
+  background: linear-gradient(-45deg, #1d2b64, #f8cdda, #00c6ff, #0072ff);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+
+/* Animated Gradient */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Glow Effects */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.glow1 {
+  width: 300px;
+  height: 300px;
+  background: #00f2fe;
+  top: 10%;
+  left: 5%;
+}
+
+.glow2 {
+  width: 400px;
+  height: 400px;
+  background: #ff00cc;
+  bottom: 10%;
+  right: 5%;
+}
+
+/* Floating Particles */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-100vh); }
+}
+
+/* Sticky Glass Header */
+header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+}
+
+header h1 {
+  font-size: 1.3rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00f2fe;
+}
+
+/* Signup Section */
+.signup-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Glass Form */
+.signup-form {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 1s ease-out;
+}
+
+.signup-form label {
+  display: block;
+  margin: 1rem 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+
+.signup-form input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00f2fe;
+}
+
+/* Neon Button */
+.signup-form .submit {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.4s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 204, 0.7);
+}
+
+.signup-form .submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 0, 204, 1);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login-link a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  margin-top: 3rem;
+}
+
+/* Fade Animation */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Glow Background -->
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<!-- Floating Particles -->
+<script>
+for(let i = 0; i < 30; i++){
+  let particle = document.createElement("div");
+  particle.className = "particle";
+  particle.style.left = Math.random() * 100 + "vw";
+  particle.style.top = Math.random() * 100 + "vh";
+  particle.style.animationDuration = (5 + Math.random() * 10) + "s";
+  document.body.appendChild(particle);
+}
+</script>
+
+<header>
+  <div class="logo">
+    <img src="3135715.png" alt="CS Bank Logo">
+    <h1>Computer Science Banking Services</h1>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="logged in.html">Home</a></li>
+      <li><a href="sign up.html">Services</a></li>
+      <li><a href="login csc.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="signup-section">
+  <h2>Create Your Account</h2>
+
+  <form class="signup-form" action="enter.html">
+    <label>Full Name</label>
+    <input type="text" name="fullname" required>
+
+    <label>Email Address</label>
+    <input type="email" name="email" required>
+
+    <label>Username</label>
+    <input type="text" name="username" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <label>Confirm Password</label>
+    <input type="password" name="confirm_password" required>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>National Identification Number (NIN)</label>
+    <input type="number" name="nin" required>
+
+    <button class="submit" type="submit">Sign Up</button>
+
+    <p class="login-link">Already have an account? <a href="login 2.html">Log in</a></p>
+  </form>
+</section>
+
+<footer>
+  &copy; 2026 CS BANKING SERVICES. All rights reserved.
+</footer>
+
+</body>
+</html>

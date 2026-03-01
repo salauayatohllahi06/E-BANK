@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../html new"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "csc task"
+	}
+}

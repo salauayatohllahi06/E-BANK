@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay Bills - CS Banking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('rodion-kutsaiev-9odES-X2Sj0-unsplash.jpg') no-repeat center center fixed;
+      margin: 0;
+      color: #333;
+      transition: background-color 0.5s ease;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      height: 100px;
+      text-align: center;
+      transition: background-color 0.5s ease;
+    }
+
+    .bill-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      background-color: #0074cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #e6e6e6;
+      margin-top: 40px;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #0074cc;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header id="pageHeader">
+    <h1 id="headerTitle">Pay Bills</h1>
+    <p id="headerSubtitle">Settle utility and service bills easily</p>
+  </header>
+
+  <main class="bill-container">
+    <h2 style="color: #005fa3;">Bill Payment Form</h2>
+    <form id="billForm" onsubmit="handleBillPayment(event)">
+      <div class="form-group">
+        <label for="billType">Select Bill Type</label>
+        <select id="billType" required onchange="updateBillForm()">
+          <option value="">-- Select a Bill --</option>
+          <option value="electricity">Electricity</option>
+          <option value="water">Water</option>
+          <option value="internet">Internet</option>
+          <option value="cable_tv">Cable TV</option>
+          <option value="waste">Waste Management</option>
+          <option value="gas">Gas</option>
+          <option value="school_fees">School Fees</option>
+          <option value="landline">Landline Bill</option>
+          <option value="tax">Tax Payment</option>
+          <option value="security">Security Service</option>
+          <option value="estate">Estate Dues</option>
+          <option value="transport">Transport Recharge</option>
+          <option value="Loan Services">Loan Services</option>
+        </select>
+      </div>
+
+      <div id="dynamicFields"></div>
+
+      <div class="form-group">
+        <label for="pin">Transaction PIN</label>
+        <input type="password" id="pin" placeholder="Enter your transaction PIN" required>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Pay Now</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CS BANKING SERVICES. All rights reserved.</p>
+  </footer>
+
+<script>
+  function updateBillForm() {
+    const billType = document.getElementById("billType").value;
+    const dynamicFields = document.getElementById("dynamicFields");
+    const header = document.getElementById("headerTitle");
+    const subtitle = document.getElementById("headerSubtitle");
+    const body = document.body;
+    const pageHeader = document.querySelector("header");
+
+    let content = "";
+    let themeColor;
+    header.textContent = `${billType.charAt(0).toUpperCase() + billType.slice(1).replace('_', ' ')} Bill`;
+    subtitle.textContent = `Fill the details below to pay your ${billType.replace('_', ' ')} bill.`;
+
+    switch (billType) {
+      case "electricity": themeColor = "#ffe600"; break;
+      case "water": themeColor = "#4fc3f7"; break;
+      case "internet": themeColor = "#673ab7"; break;
+      case "cable_tv": themeColor = "#ff4081"; break;
+      case "waste": themeColor = "#8bc34a"; break;
+      case "gas": themeColor = "#ff7043"; break;
+      case "school_fees": themeColor = "#3f51b5"; break;
+      case "landline": themeColor = "#00acc1"; break;
+      case "tax": themeColor = "#795548"; break;
+      case "security": themeColor = "#607d8b"; break;
+      case "estate": themeColor = "#009688"; break;
+      case "transport": themeColor = "#fbc02d"; break;
+      case "Loan Services": themeColor = "#d32f2f"; break;
+      default: themeColor = "#f0f4f8";
+    }
+
+    body.style.backgroundColor = themeColor;
+    pageHeader.style.backgroundColor = themeColor;
+
+    switch (billType) {
+      case "electricity":
+        content = `
+          <div class="form-group">
+            <label for="meterNumber">Meter Number</label>
+            <input type="text" id="meterNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="meterType">Meter Type</label>
+            <select id="meterType" required>
+              <option value="">Select</option>
+              <option value="prepaid">Prepaid</option>
+              <option value="postpaid">Postpaid</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "water":
+      case "waste":
+      case "estate":
+        content = `
+          <div class="form-group">
+            <label for="accountNumber">Customer Account Number</label>
+            <input type="text" id="accountNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "internet":
+        content = `
+          <div class="form-group">
+            <label for="provider">Internet Provider</label>
+            <input type="text" id="provider" required>
+          </div>
+          <div class="form-group">
+            <label for="accountNumber">Account/Phone Number</label>
+            <input type="text" id="accountNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "cable_tv":
+        content = `
+          <div class="form-group">
+            <label for="decoderNumber">Decoder Smart Card Number</label>
+            <input type="text" id="decoderNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="package">Subscription Package</label>
+            <input type="text" id="package" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "gas":
+        content = `
+          <div class="form-group">
+            <label for="gasAccount">Account ID</label>
+            <input type="text" id="gasAccount" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "school_fees":
+        content = `
+          <div class="form-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" required>
+          </div>
+          <div class="form-group">
+            <label for="studentID">Student ID</label>
+            <input type="text" id="studentID" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "landline":
+        content = `
+          <div class="form-group">
+            <label for="phoneNumber">Landline Number</label>
+            <input type="text" id="phoneNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "tax":
+        content = `
+          <div class="form-group">
+            <label for="taxID">Tax Identification Number (TIN)</label>
+            <input type="text" id="taxID" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Tax Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "security":
+        content = `
+          <div class="form-group">
+            <label for="securityAgency">Security Agency Name</label>
+            <input type="text" id="securityAgency" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "transport":
+        content = `
+          <div class="form-group">
+            <label for="transportID">Transport Card/ID</label>
+            <input type="text" id="transportID" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Recharge Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      case "Loan Services":
+        content = `
+          <div class="form-group">
+            <label for="policyNumber">Policy Number</label>
+            <input type="text" id="policyNumber" required>
+          </div>
+          <div class="form-group">
+            <label for="amount">Premium Amount (₦)</label>
+            <input type="number" id="amount" required>
+          </div>`;
+        break;
+      default:
+        content = "";
+    }
+
+    dynamicFields.innerHTML = content;
+  }
+
+  function handleBillPayment(event) {
+    event.preventDefault();
+    const billType = document.getElementById("billType").value;
+    const pin = document.getElementById("pin").value;
+    const amountInput = document.getElementById("amount");
+
+    if (!billType || !pin || !amountInput) {
+      alert("Please complete the form correctly.");
+      return;
+    }
+
+    const amount = parseFloat(amountInput.value);
+    let currentBalance = parseFloat(localStorage.getItem("accountBalance")) || 500000;
+
+    if (amount > currentBalance) {
+      alert("Insufficient balance to complete this payment.");
+      return;
+    }
+
+    // Deduct and update balance
+    currentBalance -= amount;
+    localStorage.setItem("accountBalance", currentBalance.toFixed(2));
+
+    // Save to transaction history
+    const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+    const tx = {
+      date: new Date().toISOString().slice(0, 10),
+      type: billType,
+      amount: -amount,
+      to: "Bill Payment"
+    };
+    transactions.unshift(tx);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    // Show receipt
+    generateBillReceipt(billType, amount);
+  }
+
+  function generateBillReceipt(type, amount) {
+    const receipt = document.createElement("div");
+    const now = new Date();
+    receipt.style.cssText = `
+      padding: 20px;
+      width: 320px;
+      background: #f1f8e9;
+      font-family: 'Segoe UI', sans-serif;
+      border: 2px dashed #4caf50;
+      border-radius: 12px;
+      color: #2e7d32;
+      text-align: center;
+    `;
+    receipt.innerHTML = `
+      <h3 style="color:#388e3c;">✅ CS BANK</h3>
+      <p><strong>Bill Payment Receipt</strong></p>
+      <hr/>
+      <p><strong>Service:</strong> ${type}</p>
+      <p><strong>Amount Paid:</strong> ₦${amount.toLocaleString()}</p>
+      <p><strong>Date:</strong> ${now.toLocaleDateString()} ${now.toLocaleTimeString()}</p>
+      <hr/>
+      <p>Thank you for using our bill payment service!</p>
+    `;
+
+    document.body.appendChild(receipt);
+    html2canvas(receipt).then(canvas => {
+      const imgData = canvas.toDataURL("image/jpeg");
+      const a = document.createElement("a");
+      a.href = imgData;
+      a.download = `bill_receipt_${type}_${now.getTime()}.jpg`;
+      a.textContent = "Download Receipt";
+      a.className = "download-link";
+      a.style.marginTop = "10px";
+      receipt.appendChild(a);
+      document.body.removeChild(receipt);
+    });
+
+    alert(`Payment Successful!\n₦${amount.toLocaleString()} paid for ${type}`);
+  }
+</script>
+</body>
+</html>

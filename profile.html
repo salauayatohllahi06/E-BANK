@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Account Profile - CS Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fff);
+      color: #222;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 0.7s ease-in;
+    }
+
+    header {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .profile-row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #0077b6;
+    }
+
+    .value {
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      background: #0077b6;
+      color: white;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #1976d2;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 20px 0;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #0d47a1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👤 Account Profile</h1>
+  </header>
+
+  <div class="container">
+    <a href="enter.html" class="back-btn">← Back to Dashboard</a>
+    <div class="profile-row">
+      <div class="label">Full Name:</div>
+      <div class="value">Oluwa Psycho</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Account Number:</div>
+      <div class="value">9023048590</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Phone Number:</div>
+      <div class="value">+234 816 551 4928</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Email Address:</div>
+      <div class="value">psychosolos08@example.com</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Account Type:</div>
+      <div class="value">Savings</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Bank Branch:</div>
+      <div class="value">LASUSTECH, Lagos</div>
+    </div>
+    <div class="profile-row">
+      <div class="label">Date Joined:</div>
+      <div class="value">March 15, 2023</div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 CS BANKING SERVICES. All rights reserved.
+  </footer>
+</body>
+</html>
